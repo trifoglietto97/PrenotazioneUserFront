@@ -1,0 +1,65 @@
+<div  class="panel panel-primary">
+  <div align="right">
+  <div  class="panel-heading">
+    <div class="panel-body main" style="width: 250px;">
+
+
+
+      <div class="example-input">
+        <input
+          style="width: 80%"
+          placeholder='Search prenotazione...'
+          nz-input
+          [(ngModel)]="inputValue"
+          (ngModelChange)="onChange($event)"
+          [nzAutocomplete]="auto"
+        />
+
+        <nz-autocomplete [nzDataSource]="" #auto></nz-autocomplete>
+      </div>
+
+
+
+      <div class="input-group mb-3 ">
+
+        <div class="input-group-append" >
+
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+
+
+
+
+
+    <table class="table table-hover">
+      <thead>
+      <tr>
+        <th>Nome Prenotazione</th>
+        <th>Email</th>
+        <th>Data/Ora</th>
+        <th>Action</th>
+
+
+
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let prenotazione of o| paginate: { itemsPerPage: 7, currentPage: p}">
+        <td>{{prenotazione.nomePrenotazione}}</td>
+        <td>{{prenotazione.email}}</td>
+        <td>{{prenotazione.date}}</td>
+
+        <td>
+          <button (click)="deletePrenotazione(prenotazione.idPrenotazione)" class="btn btn-danger btn-delete" style="">Delete</button>
+          <button (click)="dettagliPrenotazione(prenotazione.idPrenotazione)" class="btn btn-info btn-detail" style="margin-left: 10px ">Details</button>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+
+  <pagination-controls (pageChange)="p = $event"></pagination-controls>
+
+</div>
